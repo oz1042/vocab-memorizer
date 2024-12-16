@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>英単語暗記タイマー</title>
+        <!-- Font AwesomeのCDN -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <!-- コンパイルされたCSS -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
+    </head>
+    <body>
+        <!-- 初期モーダル -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h2 class="modal-title">英単語暗記タイマーの使い方</h2>
+                <ul class="modal-instructions">
+                    <li>
+                        「意味確認」フェーズ:
+                        英単語を見て意味を確認します（デフォルト3~5秒）
+                    </li>
+                    <li>
+                        「発音」フェーズ:
+                        意味をイメージしながら発音します（デフォルト7-10秒）
+                    </li>
+                    <li>
+                        「文作成」フェーズ:
+                        英単語を使って文を作ります（デフォルト45-50秒）
+                    </li>
+                </ul>
+                <div class="modal-buttons">
+                    <button id="startButton" class="button primary">
+                        はじめる
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- タイマー画面 -->
+        <div id="app" class="app hidden">
+            <div class="timer-container">
+                <h1 class="app-title">英単語暗記タイマー</h1>
+
+                <!-- タイマー表示 -->
+                <div class="timer-display">
+                    <div id="conic" class="conic">
+                        <p id="timer" class="timer">00:00</p>
+                    </div>
+                </div>
+
+                <!-- フェーズ表示 -->
+                <div id="phase" class="phase">準備完了</div>
+
+                <!-- コントロールボタン -->
+                <div class="control-buttons">
+                    <button id="reset" class="button control">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                    <button id="play" class="button control">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+
+                <!-- 総学習時間表示 -->
+                <div class="total-time">
+                    <p>総学習時間: <span id="totalTime">00:00:00</span></p>
+                </div>
+
+                <!-- 設定ボタン -->
+                <div class="settings-button-container">
+                    <button id="settingsButton" class="button settings">
+                        設定
+                    </button>
+                </div>
+
+                <!-- 設定モーダル -->
+                <div id="settingsModal" class="modal settings-modal hidden">
+                    <div class="modal-content">
+                        <h2 class="modal-title">設定</h2>
+                        <form id="settingsForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="phase1"
+                                    >意味確認フェーズ時間 (秒)</label
+                                >
+                                <input
+                                    type="number"
+                                    id="phase1"
+                                    name="phase1"
+                                    min="1"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="phase2"
+                                    >発音フェーズ時間 (秒)</label
+                                >
+                                <input
+                                    type="number"
+                                    id="phase2"
+                                    name="phase2"
+                                    min="1"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="phase3"
+                                    >文作成フェーズ時間 (秒)</label
+                                >
+                                <input
+                                    type="number"
+                                    id="phase3"
+                                    name="phase3"
+                                    min="1"
+                                    required
+                                />
+                            </div>
+                            <div class="form-buttons">
+                                <button
+                                    type="button"
+                                    id="closeSettings"
+                                    class="button secondary"
+                                >
+                                    閉じる
+                                </button>
+                                <button type="submit" class="button primary">
+                                    保存
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 単語表示 -->
+                <div id="wordDisplay" class="word-display">
+                    単語: <span id="currentWord">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- オーディオファイル -->
+        <audio
+            id="sound1"
+            src="https://www.soundjay.com/buttons/sounds/button-16.mp3"
+        ></audio>
+        <audio
+            id="sound2"
+            src="https://www.soundjay.com/buttons/sounds/button-3.mp3"
+        ></audio>
+        <audio
+            id="sound3"
+            src="https://www.soundjay.com/buttons/sounds/button-09.mp3"
+        ></audio>
+
+        <script src="script.js"></script>
+    </body>
+</html>
