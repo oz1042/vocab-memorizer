@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # デプロイをトリガーするブランチ
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: リポジトリをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Node.js をセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # 安定版の Node.js バージョンを指定
+
+      # Step 3: Sass をインストール
+      - name: Install Sass
+        run: npm install -g sass
+
+      # Step 4: SCSS を CSS にコンパイル
+      - name: Compile SCSS
+        run: sass assets/css/style.scss assets/css/styles.css
+
+      # Step 5: GitHub Pages にデプロイ
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # 公開するディレクトリ。ルートの場合は './'
