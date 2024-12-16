@@ -1,5 +1,5 @@
 // 要素の取得
-const modal = document.getElementById("modal");
+const modal = document.getElementById("modal"); // アプリの説明モーダル
 const startButton = document.getElementById("startButton");
 const app = document.getElementById("app");
 const playBtn = document.getElementById("play");
@@ -232,7 +232,35 @@ function stopTimer() {
 
 // イベントリスナー
 
-// 初期モーダルの「はじめる」ボタン
+// 設定モーダルの「閉じる」ボタン
+closeSettings.addEventListener("click", () => {
+    console.log("Close settings button clicked"); // デバッグ用ログ
+    settingsModal.style.display = "none"; // 直接スタイルを変更
+    // 設定を保存せずに閉じる場合、必要に応じて設定をリロード
+});
+
+// 設定フォームの送信
+settingsForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("Save button clicked"); // デバッグ用ログ
+    console.log(
+        settingsForm.phase1.value,
+        settingsForm.phase2.value,
+        settingsForm.phase3.value
+    ); // デバッグ用ログ
+    const newSettings = {
+        phase1: parseInt(settingsForm.phase1.value, 10),
+        phase2: parseInt(settingsForm.phase2.value, 10),
+        phase3: parseInt(settingsForm.phase3.value, 10),
+    };
+    saveSettings(newSettings);
+    settingsModal.style.display = "none"; // 直接スタイルを変更
+    // アプリの説明モーダルを表示
+    modal.style.display = "flex";
+    resetTimer();
+});
+
+// アプリの説明モーダルの「はじめる」ボタン
 startButton.addEventListener("click", () => {
     console.log("Start button clicked"); // デバッグ用ログ
     modal.style.display = "none"; // 直接スタイルを変更
@@ -254,34 +282,9 @@ playBtn.addEventListener("click", () => {
 // Resetボタン
 resetBtn.addEventListener("click", resetTimer);
 
-// 設定ボタン
+// 設定ボタン（アプリ内から設定モーダルを開く）
 settingsButton.addEventListener("click", () => {
     settingsModal.style.display = "flex"; // 直接スタイルを変更
-});
-
-// 設定モーダルの「閉じる」ボタン
-closeSettings.addEventListener("click", () => {
-    console.log("Close settings button clicked"); // デバッグ用ログ
-    settingsModal.style.display = "none"; // 直接スタイルを変更
-});
-
-// 設定フォームの送信
-settingsForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    console.log("Save button clicked"); // デバッグ用ログ
-    console.log(
-        settingsForm.phase1.value,
-        settingsForm.phase2.value,
-        settingsForm.phase3.value
-    ); // デバッグ用ログ
-    const newSettings = {
-        phase1: parseInt(settingsForm.phase1.value, 10),
-        phase2: parseInt(settingsForm.phase2.value, 10),
-        phase3: parseInt(settingsForm.phase3.value, 10),
-    };
-    saveSettings(newSettings);
-    settingsModal.style.display = "none"; // 直接スタイルを変更
-    resetTimer();
 });
 
 // 初期ロード

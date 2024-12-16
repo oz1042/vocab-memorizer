@@ -13,11 +13,62 @@
             referrerpolicy="no-referrer"
         />
         <!-- コンパイルされたCSS -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
     </head>
     <body>
-        <!-- 初期モーダル -->
-        <div id="modal" class="modal">
+        <!-- 設定モーダル（初期表示） -->
+        <div id="settingsModal" class="modal settings-modal">
+            <div class="modal-content">
+                <h2 class="modal-title">設定</h2>
+                <form id="settingsForm" class="settings-form">
+                    <div class="form-group">
+                        <label for="phase1">意味確認フェーズ時間 (秒)</label>
+                        <input
+                            type="number"
+                            id="phase1"
+                            name="phase1"
+                            min="1"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="phase2">発音フェーズ時間 (秒)</label>
+                        <input
+                            type="number"
+                            id="phase2"
+                            name="phase2"
+                            min="1"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="phase3">文作成フェーズ時間 (秒)</label>
+                        <input
+                            type="number"
+                            id="phase3"
+                            name="phase3"
+                            min="1"
+                            required
+                        />
+                    </div>
+                    <div class="form-buttons">
+                        <button
+                            type="button"
+                            id="closeSettings"
+                            class="button secondary"
+                        >
+                            閉じる
+                        </button>
+                        <button type="submit" class="button primary">
+                            保存
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- アプリの説明モーダル（非表示） -->
+        <div id="modal" class="modal hidden">
             <div class="modal-content">
                 <h2 class="modal-title">英単語暗記タイマーの使い方</h2>
                 <ul class="modal-instructions">
@@ -51,6 +102,7 @@
                 <div class="timer-display">
                     <div id="conic" class="conic">
                         <p id="timer" class="timer">00:00</p>
+                        <!-- 不要な要素を削除済み -->
                     </div>
                 </div>
 
@@ -79,67 +131,10 @@
                     </button>
                 </div>
 
-                <!-- 設定モーダル -->
-                <div id="settingsModal" class="modal settings-modal hidden">
-                    <div class="modal-content">
-                        <h2 class="modal-title">設定</h2>
-                        <form id="settingsForm" class="settings-form">
-                            <div class="form-group">
-                                <label for="phase1"
-                                    >意味確認フェーズ時間 (秒)</label
-                                >
-                                <input
-                                    type="number"
-                                    id="phase1"
-                                    name="phase1"
-                                    min="1"
-                                    required
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="phase2"
-                                    >発音フェーズ時間 (秒)</label
-                                >
-                                <input
-                                    type="number"
-                                    id="phase2"
-                                    name="phase2"
-                                    min="1"
-                                    required
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="phase3"
-                                    >文作成フェーズ時間 (秒)</label
-                                >
-                                <input
-                                    type="number"
-                                    id="phase3"
-                                    name="phase3"
-                                    min="1"
-                                    required
-                                />
-                            </div>
-                            <div class="form-buttons">
-                                <button
-                                    type="button"
-                                    id="closeSettings"
-                                    class="button secondary"
-                                >
-                                    閉じる
-                                </button>
-                                <button type="submit" class="button primary">
-                                    保存
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
                 <!-- 単語表示 -->
-                <div id="wordDisplay" class="word-display">
+                <!-- <div id="wordDisplay" class="word-display">
                     単語: <span id="currentWord">--</span>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -147,16 +142,20 @@
         <audio
             id="sound1"
             src="https://www.soundjay.com/buttons/sounds/button-16.mp3"
+            preload="auto"
         ></audio>
         <audio
             id="sound2"
             src="https://www.soundjay.com/buttons/sounds/button-3.mp3"
+            preload="auto"
         ></audio>
         <audio
             id="sound3"
             src="https://www.soundjay.com/buttons/sounds/button-09.mp3"
+            preload="auto"
         ></audio>
 
         <script src="script.js"></script>
     </body>
 </html>
+Ï
