@@ -21,12 +21,12 @@ jobs:
           node-version: '16'  # 安定版の Node.js バージョンを指定
 
       # Step 3: Sass をインストール
-      - name: Install Sass
-        run: npm install -g sass
+      # - name: Install Sass
+      #   run: npm install -g sass
 
       # Step 4: SCSS を CSS にコンパイル
-      - name: Compile SCSS
-        run: sass assets/css/style.scss assets/css/styles.css
+      # - name: Compile SCSS
+      #   run: sass assets/css/style.scss assets/css/styles.css
 
       # Step 5: GitHub Pages にデプロイ
       - name: Deploy to GitHub Pages
