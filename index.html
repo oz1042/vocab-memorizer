@@ -71,20 +71,20 @@
         <div id="modal" class="modal hidden">
             <div class="modal-content">
                 <h2 class="modal-title">英単語暗記タイマーの使い方</h2>
-                <ul class="modal-instructions">
+                <ol class="modal-instructions">
                     <li>
-                        「意味確認」フェーズ:
-                        英単語を見て意味を確認します（デフォルト5秒）
+                        意味確認:
+                        英単語を見て意味を確認します（初期設定:5秒）
                     </li>
                     <li>
-                        「発音」フェーズ:
-                        意味をイメージしながら発音します（デフォルト10秒）
+                        発音:
+                        意味をイメージしながら発音します（初期設定:10秒）
                     </li>
                     <li>
-                        「文作成」フェーズ:
-                        英単語を使って文を作ります（デフォルト50秒）
+                        文作成:
+                        英単語を使って文を作ります（初期設定:30秒）
                     </li>
-                </ul>
+                </ol>
                 <div class="modal-buttons">
                     <button id="startButton" class="button primary">
                         はじめる
@@ -131,27 +131,18 @@
                     </button>
                 </div>
 
-                <!-- 単語表示 -->
-                <!-- <div id="wordDisplay" class="word-display">
-                    単語: <span id="currentWord">--</span>
-                </div> -->
             </div>
         </div>
 
         <!-- オーディオファイル -->
         <audio
             id="sound1"
-            src="https://www.soundjay.com/buttons/sounds/button-16.mp3"
-            preload="auto"
-        ></audio>
-        <audio
-            id="sound2"
             src="https://www.soundjay.com/buttons/sounds/button-3.mp3"
             preload="auto"
         ></audio>
         <audio
-            id="sound3"
-            src="https://www.soundjay.com/buttons/sounds/button-09.mp3"
+            id="sound2"
+            src="./assets/audio/bird-voice.mp3"
             preload="auto"
         ></audio>
 
